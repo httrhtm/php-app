@@ -16,11 +16,8 @@ try {
     $sql = 'select id, name, password from users where id = :id';
     $stmt = $db->prepare($sql);
 
-    //指定された変数名にパラメータをバインド
-    $stmt->bindParam(':id', $id);
-
     //実行
-    $stmt->execute();
+    $stmt->execute([':id' => $id]);
 
     // PDO::FETCH_ASSOC：列名を記述し配列で取り出す
     // fetch：取り出す

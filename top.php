@@ -1,12 +1,12 @@
 <?php
 
-function h($s){
-  return htmlspecialchars($s, ENT_QUOTES, 'utf-8');
+session_start();
 
-  session_start();
+function h($s){
+    return htmlspecialchars($s, ENT_QUOTES, 'utf-8');
 }
 
- ?>
+?>
 
 <!DOCTYPE html>
 <html lang="ja">
