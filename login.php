@@ -48,9 +48,9 @@ else {
     session_regenerate_id(true);
 
     // loginセッションに登録
-    $_SESSION['login'] = $result['id'];
-    $_SESSION['login'] = $result['name'];
-    $_SESSION['login'] = $result['password'];
+    $_SESSION['id'] = $result['id'];
+    $_SESSION['name'] = $result['name'];
+    $_SESSION['password'] = $result['password'];
 
     // topページにリダイレクト
     header("Location: top.php");
