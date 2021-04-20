@@ -4,29 +4,24 @@ require 'db_connection.php';
 // --------------------------------------------------
 // 問題を取得
 // --------------------------------------------------
-try {
-    $db = new PDO(DSN, DB_USER, DB_PASS);
+if (isset($db)) {
+
     $sql = 'select * from questions';
     $stmt = $db->prepare($sql);
 
-    //実行
+    // 実行
     $stmt->execute();
 
     // PDO::FETCH_ASSOC：列名を記述し配列で取り出す
     // fetch：取り出す
     $array_question = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    //例外処理
-} catch (\Exception $e) {
-    echo $e->getMessage() . PHP_EOL;
 }
 
 // --------------------------------------------------
 // 答えを取得
 // --------------------------------------------------
-
-try {
-    $db = new PDO(DSN, DB_USER, DB_PASS);
+if (isset($db)) {
     $sql = 'select * from correct_answers';
     $stmt = $db->prepare($sql);
 
@@ -36,13 +31,7 @@ try {
     // PDO::FETCH_ASSOC：列名を記述し配列で取り出す
     // fetch：取り出す
     $array_answer = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    //例外処理
-} catch (\Exception $e) {
-    echo $e->getMessage() . PHP_EOL;
 }
-
-
 
 ?>
 
