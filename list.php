@@ -2,7 +2,7 @@
 require 'db_connection.php';
 
 // --------------------------------------------------
-// DBから問題と答えを取得
+// 問題を取得
 // --------------------------------------------------
 try {
     $db = new PDO(DSN, DB_USER, DB_PASS);
@@ -14,7 +14,7 @@ try {
 
     // PDO::FETCH_ASSOC：列名を記述し配列で取り出す
     // fetch：取り出す
-    $array_question = $stmt->fetch(PDO::FETCH_ASSOC);
+    $array_question = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     //例外処理
 } catch (\Exception $e) {
@@ -22,21 +22,20 @@ try {
 }
 
 // --------------------------------------------------
-// 問題のIDと一致する答えを取得
+// 答えを取得
 // --------------------------------------------------
-$id = $array_question['id'];
 
 try {
     $db = new PDO(DSN, DB_USER, DB_PASS);
-    $sql = 'select * from correct_answers where id = :id';
+    $sql = 'select * from correct_answers';
     $stmt = $db->prepare($sql);
 
     //実行
-    $stmt->execute([':id' => $id]);
+    $stmt->execute();
 
     // PDO::FETCH_ASSOC：列名を記述し配列で取り出す
     // fetch：取り出す
-    $array_answer = $stmt->fetch(PDO::FETCH_ASSOC);
+    $array_answer = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     //例外処理
 } catch (\Exception $e) {
@@ -69,50 +68,56 @@ try {
 	<div class="list">
 
 		<!-- question -->
-		<table>
-			<tr>
-				<th>問題:</th>
+		<?php
+		foreach ( $array_question as $question) {
+		?>
+        	<table>
+        		<tr>
+        			<th>問題:</th>
 
-				<!-- 問題馬号 -->
-				<td><?php echo $array_question['id']; ?></td>
+        			<!-- 問題馬号 -->
+        			<td><?php echo $question['id']; ?></td>
 
-				<!-- 問題 -->
-				<td><?php echo $array_question['question']; ?></td>
+        			<!-- 問題 -->
+        			<td><?php echo $question['question']; ?></td>
 
-				<!-- 編集ボタン -->
-				<td>
-					<form action="edit.php" method="post">
-						<button type="submit">編集</button>
-					</form>
-				</td>
+        			<!-- 編集ボタン -->
+        			<td>
+        				<form action="edit.php" method="post">
+        					<button type="submit">編集</button>
+        				</form>
+        			</td>
 
-				<!-- 削除ボタン -->
-				<td>
-					<form action="delete.php" method="post">
-						<button type="submit">削除</button>
-					</form>
-				</td>
+        			<!-- 削除ボタン -->
+        			<td>
+        				<form action="delete.php" method="post">
+        					<button type="submit">削除</button>
+        				</form>
+        			</td>
 
-			</tr>
+        		</tr>
 
-		</table>
+        	</table>
 
-		<!-- answer -->
-		<table>
-			<tr>
-				<th>答え:</th>
+        	<!-- answer -->
+        	<?php
+        	foreach ( $array_answer as $answer) {
+        	    if ($answer['questions_id'] == $question['id']) {
+        	?>
+            	<table>
+            		<tr>
+            			<th>答え:</th>
 
-				<!-- 答え -->
-				<?php
-			    if ($array_answer['questions_id'] == $array_question['id']) {
+            			<!-- 答え -->
+            			<td><?php echo $answer['answer'];; ?></td>
+            		</tr>
+            	</table>
 
-			        $answer = $array_answer['answer'];
-
-			    }
-				?>
-				<td><?php echo $answer; ?></td>
-			</tr>
-		</table>
+    	<?php
+    		  }
+    	   }
+    	}
+    	?>
 
 	</div>
 </body>
