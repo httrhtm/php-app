@@ -5,7 +5,7 @@
 
 // 直接入れると参照できないためPHP変数に入れる
 $question = $_POST['question'];
-$answer = $_POST['answer'];
+$answers = $_POST['answer'];
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@ $answer = $_POST['answer'];
 	<!-- register -->
 	<div class="register">
 
-		<form action="register_confirm.php" method="post">
+		<form action="insert.php" method="post">
 			<!-- 問題 -->
 
 			<table>
@@ -38,6 +38,9 @@ $answer = $_POST['answer'];
 			</table>
 
 			<!-- 答え -->
+			<?php
+			foreach ( $answers as $answer) {
+        	?>
 			<table>
 				<tr>
 					<th>答え:</th>
@@ -53,6 +56,9 @@ $answer = $_POST['answer'];
 
 				</tr>
 			</table>
+			<?php
+			}
+			?>
 
 			<button type="button" onclick="location.href='register.php'">戻る</button>
 			<button>追加*</button>
