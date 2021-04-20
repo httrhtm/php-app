@@ -11,22 +11,17 @@ require 'db_connection.php';
 $id = $_POST['id'];
 $password = $_POST['password'];
 
-try {
-    $db = new PDO(DSN, DB_USER, DB_PASS);
-    $sql = 'select id, name, password from users where id = :id';
-    $stmt = $db->prepare($sql);
+$sql = 'select id, name, password from users where id = :id';
+$stmt = $db->prepare($sql);
 
-    //実行
-    $stmt->execute([':id' => $id]);
+//実行
+$stmt->execute([':id' => $id]);
 
-    // PDO::FETCH_ASSOC：列名を記述し配列で取り出す
-    // fetch：取り出す
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+// PDO::FETCH_ASSOC：列名を記述し配列で取り出す
+// fetch：取り出す
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    //例外処理
-} catch (\Exception $e) {
-    echo $e->getMessage() . PHP_EOL;
-}
+
 
 // --------------------------------------------------
 // idに対してパスワードが正しいか検証
