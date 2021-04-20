@@ -1,18 +1,8 @@
-<?php
-
-function h($s){
-  return htmlspecialchars($s, ENT_QUOTES, 'utf-8');
-
-  session_start();
-}
-
- ?>
-
 <!DOCTYPE html>
 <html lang="ja">
  <head>
-   <meta charset="utf-8">
-   <title>Login</title>
+    <meta charset="utf-8">
+    <title>Login</title>
  </head>
  <body>
    <p>ログイン</p>
