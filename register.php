@@ -33,7 +33,7 @@
 				<tr>
 					<th>答え:</th>
 					<td>
-						<textarea name="answer" rows="1"></textarea>
+						<textarea name="answer" rows="2"></textarea>
 					</td>
 
 					<td>

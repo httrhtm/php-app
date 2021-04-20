@@ -109,7 +109,7 @@ try {
             			<th>答え:</th>
 
             			<!-- 答え -->
-            			<td><?php echo $answer['answer'];; ?></td>
+            			<td><?php echo $answer['answer']; ?></td>
             		</tr>
             	</table>
 
