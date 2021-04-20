@@ -33,7 +33,22 @@
 				<tr>
 					<th>答え:</th>
 					<td>
-						<textarea name="answer" rows="2"></textarea>
+						<textarea name="answer[]" rows="2"></textarea>
+					</td>
+
+					<td>
+						<button>削除*</button>
+					</td>
+
+				</tr>
+			</table>
+
+			<!-- 答え -->
+			<table>
+				<tr>
+					<th>答え:</th>
+					<td>
+						<textarea name="answer[]" rows="2"></textarea>
 					</td>
 
 					<td>
