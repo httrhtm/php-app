@@ -1,11 +1,8 @@
-<?php
- ?>
-
 <!DOCTYPE html>
 <html lang="ja">
  <head>
-   <meta charset="utf-8">
-   <title>Login</title>
+    <meta charset="utf-8">
+    <title>Login</title>
  </head>
  <body>
    <p>ログイン</p>
