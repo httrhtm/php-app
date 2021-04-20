@@ -76,7 +76,7 @@ try {
         			<th>問題:</th>
 
         			<!-- 問題馬号 -->
-        			<td><?php echo $question['id']; ?></td>
+        			<td><?= $question['id'] ?></td>
 
         			<!-- 問題 -->
         			<td><?php echo $question['question']; ?></td>
@@ -109,7 +109,7 @@ try {
             			<th>答え:</th>
 
             			<!-- 答え -->
-            			<td><?php echo $answer['answer'];; ?></td>
+            			<td><?= $answer['answer'] ?></td>
             		</tr>
             	</table>
 
