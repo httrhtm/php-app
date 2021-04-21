@@ -49,11 +49,6 @@ $answers = $_POST['answer'];
 							<?php echo $answer; ?>
 						</textarea>
 					</td>
-
-					<td>
-						<button>削除*</button>
-					</td>
-
 				</tr>
 			</table>
 			<?php
@@ -61,8 +56,7 @@ $answers = $_POST['answer'];
 			?>
 
 			<button type="button" onclick="location.href='register.php'">戻る</button>
-			<button>追加*</button>
-			<button type="submit">確認</button>
+			<button type="submit">登録</button>
 
 		</form>
 

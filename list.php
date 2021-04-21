@@ -68,7 +68,7 @@ if (isset($db)) {
         			<td><?= $question['id'] ?></td>
 
         			<!-- 問題 -->
-        			<td><?php echo $question['question']; ?></td>
+        			<td><?= $question['question']; ?></td>
 
         			<!-- 編集ボタン -->
         			<td>
@@ -79,8 +79,10 @@ if (isset($db)) {
 
         			<!-- 削除ボタン -->
         			<td>
-        				<form action="delete.php" method="post">
+        				<form action="delete_confirm.php" method="post">
         					<button type="submit">削除</button>
+        					<input type="hidden" name="question_id" value="<?= $question['id'] ?>">
+        					<input type="hidden" name="question" value="<?= $question['question']; ?>">
         				</form>
         			</td>
 
