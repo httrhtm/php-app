@@ -4,7 +4,7 @@ require 'db_connection.php';
 
 // 変数に入れる
 $question = $_POST['question'];
-$answer = $_POST['answer']; //配列
+$answers = $_POST['answer']; //配列
 
 // --------------------------------------------------
 // 問題の登録
@@ -26,6 +26,12 @@ $sql = 'insert into correct_answers (questions_id, answer, created_at)
 
 $stmt = $db->prepare($sql);
 
-//実行
-$stmt->execute([':answer' => $answer]);
+foreach ($answers as $answer) {
+
+    // 実行
+    $stmt->execute([':answer' => $answer]);
+}
+
+// topページにリダイレクト
+header("Location: list.php");
 ?>

@@ -45,7 +45,7 @@ $answers = $_POST['answer'];
 				<tr>
 					<th>答え:</th>
 					<td>
-						<textarea readonly name="answer" rows="2">
+						<textarea readonly name="answer[]" rows="2">
 							<?php echo $answer; ?>
 						</textarea>
 					</td>
