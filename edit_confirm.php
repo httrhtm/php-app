@@ -22,9 +22,9 @@ $answers = $_POST['answer']; //配列
 	<?php include('./nav.php'); ?>
 
 	<!-- register -->
-	<div class="register">
+	<div class="edit-confirm">
 
-		<form action="insert.php" method="post">
+		<form action="update.php" method="post">
 			<!-- 問題 -->
 
 			<table>
@@ -60,7 +60,7 @@ $answers = $_POST['answer']; //配列
 			?>
 
 			<button type="button" onclick="location.href='edit.php'">戻る</button>
-			<button type="submit">登録</button>
+			<button type="submit">更新</button>
 
 		</form>
 
