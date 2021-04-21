@@ -16,11 +16,6 @@ $stmt = $db->prepare($sql);
 //実行
 $stmt->execute([':id' => $id]);
 
-// PDO::FETCH_ASSOC：列名を記述し配列で取り出す
-// fetch：取り出す
-$result_answer = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
 // --------------------------------------------------
 // 問題のidと一致する答えを削除
 // --------------------------------------------------
