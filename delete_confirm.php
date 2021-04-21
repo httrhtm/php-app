@@ -47,6 +47,7 @@ $result_answer = $stmt->fetchAll(PDO::FETCH_ASSOC);
 						<textarea readonly name="question" rows="2">
 							<?= $question ?>
 						</textarea>
+						<input type="hidden" name="question_id" value="<?= $id ?>">
 					</td>
 
 				</tr>
