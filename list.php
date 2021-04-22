@@ -74,6 +74,8 @@ if (isset($db)) {
         			<td>
         				<form action="edit.php" method="post">
         					<button type="submit">編集</button>
+        					<input type="hidden" name="question_id" value="<?= $question['id'] ?>">
+        					<input type="hidden" name="question" value="<?= $question['question']; ?>">
         				</form>
         			</td>
 
