@@ -112,10 +112,6 @@ session_destroy();
 				<?php echo isset($error_message['answer']) ? $error_message['answer'] : ''; ?>
 			 </span>
 
-			<span>
-				<?php echo isset($error_message['answer']) ? $error_message['answer'] : ''; ?>
-			 </span>
-
 			<?php
             }
             ?>
