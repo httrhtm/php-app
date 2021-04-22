@@ -5,30 +5,26 @@ require 'db_connection.php';
 // --------------------------------------------------
 
 // PHP変数に入れる
-$id = $_POST['question_id'];
+$question_id = $_POST['question_id'];
 $question = $_POST['question'];
+$answer_id = $_POST['answer_id'];
+$answer = $_POST['answer'];
 
-// --------------------------------------------------
-// 問題のidと一致する答えを取得
-// --------------------------------------------------
-$sql = 'select id, answer from correct_answers where questions_id = :id';
-$stmt = $db->prepare($sql);
+var_dump($question_id); //2
+var_dump($question); //a
 
-//実行
-$stmt->execute([':id' => $id]);
+// それぞれの編集ボタン
+var_dump($answer_id); //3, 4
+var_dump($answer); //a
 
-// PDO::FETCH_ASSOC：列名を記述し配列で取り出す
-// fetch：取り出す
-$answers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// answerを取ってきているので、question_idでanswerを探すSQL文を削除
 
 // --------------------------------------------------
 // バリデーション
 // --------------------------------------------------
 session_start();
 if (!empty($_POST) && empty($_SESSION['input_data'])) {
-
-    $question = $_POST['question'];
-    $answers = $_POST['answer'];
 
     //問題
     if (empty($question)) {
@@ -38,18 +34,16 @@ if (!empty($_POST) && empty($_SESSION['input_data'])) {
     }
 
     //答え
-    if (empty($answers['answer'])) {
+    if (empty($answer)) {
         $error_message['answer'] = '答えを入力して下さい';
-    } elseif (mb_strlen($answers['answer']) > 200) {
+    } elseif (mb_strlen($answer) > 200) {
         $error_message['answer'] = '答えを200文字以内で入力してください';
     }
-
-
 
     //エラー内容チェック -- エラーがなければregister_confirm.phpへリダイレクト
     if (empty($error_message)) {
         $_SESSION['input_data'] = $_POST;
-        header('Location:./register_confirm.php', true, 307);
+        header('Location:./edit_confirm.php', true, 307);
         exit();
     }
 } elseif (!empty($_SESSION['input_data'])) {
@@ -82,7 +76,7 @@ session_destroy();
 					<th>問題:</th>
 					<td>
 						<input name="question" value="<?= $question ?>">
-						<input type="hidden" name="question_id" value="<?= $id ?>">
+						<input type="hidden" name="question_id" value="<?= $question_id ?>">
 					</td>
 
 				</tr>
@@ -92,16 +86,15 @@ session_destroy();
 			 </span>
 
 			<!-- 答え -->
-			<?php
-			foreach ( $answers as $answer) {
-        	?>
+
+            <!-- 配列ではないのでforeachを削除 -->
 
 			<table>
 				<tr>
 					<th>答え:</th>
 					<td>
-						<input name="answer[]" value ="<?= $answer['answer'] ?>">
-    					<input type="hidden" name="answer_id[]" value="<?= $answer['id'] ?>">
+						<input name="answer" value ="<?= $answer ?>">
+    					<input type="hidden" name="answer_id" value="<?= $answer_id ?>">
     				</td>
 					<td>
 						<button>削除*</button>
@@ -111,10 +104,6 @@ session_destroy();
 			<span>
 				<?php echo isset($error_message['answer']) ? $error_message['answer'] : ''; ?>
 			 </span>
-
-			<?php
-            }
-            ?>
 
 			<br>
 			<button type="button" onclick="location.href='list.php'">戻る</button>
