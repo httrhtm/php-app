@@ -6,6 +6,8 @@
 // 直接入れると参照できないためPHP変数に入れる
 $question = $_POST['question'];
 $answers = $_POST['answer'];
+
+include('./register_validation.php');
 ?>
 
 <!DOCTYPE html>
