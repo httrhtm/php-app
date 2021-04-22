@@ -6,8 +6,6 @@
 // 直接入れると参照できないためPHP変数に入れる
 $question = $_POST['question'];
 $answers = $_POST['answer'];
-
-include('./register_validation.php');
 ?>
 
 <!DOCTYPE html>
@@ -31,9 +29,7 @@ include('./register_validation.php');
 				<tr>
 					<th>問題:</th>
 					<td>
-						<textarea readonly name="question" rows="2">
-							<?php echo $question; ?>
-						</textarea>
+						<input readonly name="question" value="<?php echo $question ?>">
 					</td>
 
 				</tr>
@@ -47,9 +43,7 @@ include('./register_validation.php');
 				<tr>
 					<th>答え:</th>
 					<td>
-						<textarea readonly name="answer[]" rows="2">
-							<?php echo $answer; ?>
-						</textarea>
+						<input readonly name="answer[]" value="<?php echo $answer ?>">
 					</td>
 				</tr>
 			</table>

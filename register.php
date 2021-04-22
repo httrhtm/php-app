@@ -19,7 +19,7 @@
 				<tr>
 					<th>問題:</th>
 					<td>
-						<textarea name="question" rows="2"></textarea>
+						<input name="question">
 					</td>
 
 				</tr>
@@ -30,7 +30,7 @@
 				<tr>
 					<th>答え:</th>
 					<td>
-						<textarea name="answer[]" rows="2"></textarea>
+						<input name="answer[]">
 					</td>
 
 					<td>
@@ -45,7 +45,7 @@
 				<tr>
 					<th>答え:</th>
 					<td>
-						<textarea name="answer[]" rows="2"></textarea>
+						<input name="answer[]">
 					</td>
 
 					<td>
@@ -57,7 +57,7 @@
 
 			<button type="button" onclick="location.href='list.php'">戻る</button>
 			<button>追加*</button>
-			<button type="submit">確認</button>
+			<button type="submit" name ="btn_submit">確認</button>
 
 		</form>
 
