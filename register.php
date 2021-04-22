@@ -1,4 +1,7 @@
 <?php
+// --------------------------------------------------
+// バリデーション
+// --------------------------------------------------
     session_start();
     if (!empty($_POST) && empty($_SESSION['input_data'])) {
 
@@ -35,8 +38,6 @@
     session_destroy();
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -51,15 +52,14 @@
 	<!-- register -->
 	<div class="register">
 
-		<form action="register.php" method="post">
+		<form action="register.php" method="post" autocomplete="off">
 			<!-- 問題 -->
 
 			<table>
 				<tr>
 					<th>問題:</th>
 					<td>
-						<input name="question"
-						value="<?php echo isset($question) ? htmlspecialchars($question,ENT_QUOTES) : ''; ?>">
+						<input name="question">
 					</td>
 				</tr>
 			</table>
@@ -72,8 +72,7 @@
 				<tr>
 					<th>答え:</th>
 					<td>
-						<input name="answer[]"
-						value="<?php echo isset($answer) ? htmlspecialchars($answer,ENT_QUOTES) : ''; ?>">
+						<input name="answer[]">
 					</td>
 
 					<td>
@@ -91,8 +90,7 @@
 				<tr>
 					<th>答え:</th>
 					<td>
-						<input name="answer[]"
-						value="<?php echo isset($answer) ? htmlspecialchars($answer,ENT_QUOTES) : ''; ?>">
+						<input name="answer[]">
 					</td>
 
 					<td>
