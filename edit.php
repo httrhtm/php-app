@@ -74,11 +74,9 @@ session_destroy();
 	<!-- register -->
 	<div class="edit">
 
-
 		<form action="edit.php" method="post" autocomplete="off">
 
 			<!-- 問題 -->
-
 			<table>
 				<tr>
 					<th>問題:</th>
@@ -110,6 +108,9 @@ session_destroy();
 					</td>
 				</tr>
 			</table>
+			<span>
+				<?php echo isset($error_message['answer']) ? $error_message['answer'] : ''; ?>
+			 </span>
 
 			<span>
 				<?php echo isset($error_message['answer']) ? $error_message['answer'] : ''; ?>
