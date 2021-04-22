@@ -6,7 +6,7 @@
 // 直接入れると参照できないためPHP変数に入れる
 $question_id = $_POST['question_id'];
 $question = $_POST['question'];
-$answer_id = $_POST['answer_id']; //配列
+$answers_id = $_POST['answer_id']; //配列
 $answers = $_POST['answer']; //配列
 ?>
 
@@ -51,7 +51,6 @@ $answers = $_POST['answer']; //配列
 						<textarea readonly name="answer[]" rows="2">
 							<?= $answer ?>
 						</textarea>
-						<input type="hidden" name="answer_id" value="<?= $answer_id ?>">
 					</td>
 				</tr>
 			</table>
@@ -59,6 +58,13 @@ $answers = $_POST['answer']; //配列
 			}
 			?>
 
+			<?php
+            foreach ($answers_id as $answer_id) {
+            ?>
+    			<input type="hidden" name="answer_id[]" value="<?= $answer_id ?>">
+    		<?php
+            }
+            ?>
 			<button type="button" onclick="location.href='edit.php'">戻る</button>
 			<button type="submit">更新</button>
 

@@ -7,7 +7,7 @@ require 'db_connection.php';
 // PHP変数に入れる
 $question_id = $_POST['question_id'];
 $question = $_POST['question'];
-$answer_id = $_POST['answer_id']; //配列
+$answers_id = $_POST['answer_id']; //配列
 $answers = $_POST['answer']; //配列
 
 // --------------------------------------------------
@@ -24,11 +24,17 @@ $stmt->execute($params);
 // --------------------------------------------------
 // 答えを更新
 // --------------------------------------------------
-$sql = 'delete from correct_answers where questions_id = :id';
+$sql = 'update correct_answers set answer = :answer, updated_at = current_timestamp() where id = :id';
 $stmt = $db->prepare($sql);
 
-//実行
-$stmt->execute([':id' => $id]);
+for ($i = 0; $i < count($answers); $i++){
+
+    $params = array(':answer' => $answers[$i], ':id' => $answers_id[$i]);
+
+    $stmt->execute($params);
+
+}
+
 
 // listページにリダイレクト
 header("Location: list.php");

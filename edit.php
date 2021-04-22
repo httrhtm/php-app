@@ -65,7 +65,7 @@ $result_answer = $stmt->fetchAll(PDO::FETCH_ASSOC);
 						<textarea name="answer[]" rows="2">
     						<?= $answer['answer'] ?>
     					</textarea>
-    					<input type="hidden" name="answer_id" value="<?= $answer['id'] ?>">
+    					<input type="hidden" name="answer_id[]" value="<?= $answer['id'] ?>">
     				</td>
 					<td>
 						<button>削除*</button>
