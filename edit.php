@@ -1,16 +1,40 @@
 <?php
 require 'db_connection.php';
-// --------------------------------------------------
+//---------------------------------------------------
 // 入力値を取得
 // --------------------------------------------------
 
 // PHP変数に入れる
 $question_id = $_POST['question_id'];
 $question = $_POST['question'];
-$answer_id = $_POST['answer_id'];
+
+//1周目はlistから取ってきた値
+//2周目以降はDBから取ってきた配列
 $answer = $_POST['answer'];
 
-// answerを取ってきているので、question_idでanswerを探すSQL文を削除
+// var_dump($answer);
+//①string(1) "i"
+//②array(2) { [0]=> string(1) "i" [1]=> string(1) "p" }
+
+// --------------------------------------------------
+// 答えを取得
+// --------------------------------------------------
+$sql = 'select id, answer from correct_answers where questions_id = :id';
+$stmt = $db->prepare($sql);
+
+//実行
+$stmt->execute([':id' => $question_id]);
+
+// var_dump($question_id);
+//①②
+//string(1) "2"
+
+$result_answers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// var_dump($result_answers);
+//①②
+//[0]=> array(2) { ["id"]=> string(1) "3" ["answer"]=> string(1) "i" }
+//[1]=> array(2) { ["id"]=> string(1) "4" ["answer"]=> string(1) "p" }
 
 // --------------------------------------------------
 // バリデーション
@@ -25,11 +49,33 @@ if (!empty($_POST) && empty($_SESSION['input_data'])) {
         $error_message['question'] = '問題を500文字以内で入力してください';
     }
 
-    //答え
-    if (empty($answer)) {
-        $error_message['answer'] = '答えを入力して下さい';
-    } elseif (mb_strlen($answer) > 200) {
-        $error_message['answer'] = '答えを200文字以内で入力してください';
+
+    //答え【配列の場合】
+    if (is_array($answer )) {
+        foreach ( $answer as $a) {
+
+            //var_dump($a);
+            //②
+            //string(1) "i"
+            //string(1) "p"
+
+            if (empty($a)) {
+                $error_message['answer'] = '答えを入力して下さい';
+
+            } elseif (mb_strlen($a) > 200) {
+                $error_message['answer'] = '答えを200文字以内で入力してください';
+            }
+        }
+    //答え【配列でなかった場合】
+    } else {
+
+        //var_dump($answer);
+
+        if (empty($answer)) {
+            $error_message['answer'] = '答えを入力して下さい';
+        } elseif (mb_strlen($answer) > 200) {
+            $error_message['answer'] = '答えを200文字以内で入力してください';
+        }
     }
 
     //エラー内容チェック -- エラーがなければregister_confirm.phpへリダイレクト
@@ -78,15 +124,31 @@ session_destroy();
 			 </span>
 
 			<!-- 答え -->
+			<?php
+			if (is_array($result_answers)) {
+                foreach ( $result_answers as $result_answer) {
 
-            <!-- 配列ではないのでforeachを削除 -->
+                //var_dump($result_answer);
+                //①②
+                //array(2) { ["id"]=> string(1) "3" ["answer"]=> string(1) "i" }
+                //array(2) { ["id"]=> string(1) "4" ["answer"]=> string(1) "p" }
 
+                //var_dump($result_answer['answer']);
+                //①②
+                //string(1) "i"
+                //string(1) "p"
+
+                //var_dump($result_answer['id']);
+                //①②
+                //string(1) "3"
+                //string(1) "4"
+            ?>
 			<table>
 				<tr>
 					<th>答え:</th>
 					<td>
-						<input name="answer" value ="<?= $answer ?>">
-    					<input type="hidden" name="answer_id" value="<?= $answer_id ?>">
+						<input name="answer[]" value ="<?= $result_answer['answer'] ?>">
+    					<input type="hidden" name="answer_id[]" value="<?= $result_answer['id'] ?>">
     				</td>
 					<td>
 						<button>削除*</button>
@@ -96,6 +158,10 @@ session_destroy();
 			<span>
 				<?php echo isset($error_message['answer']) ? $error_message['answer'] : ''; ?>
 			 </span>
+			 <?php
+                }
+			}
+            ?>
 
 			<br>
 			<button type="button" onclick="location.href='list.php'">戻る</button>
