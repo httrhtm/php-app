@@ -22,7 +22,7 @@ $answers = $_POST['answer']; //配列
 
 	<?php include('./nav.php'); ?>
 
-	<!-- register -->
+	<!-- edit confirm -->
 	<div class="edit-confirm">
 
 		<form action="update.php" method="post">

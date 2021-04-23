@@ -12,10 +12,6 @@ $question = $_POST['question'];
 //2周目以降はDBから取ってきた配列
 $answer = $_POST['answer'];
 
-// var_dump($answer);
-//①string(1) "i"
-//②array(2) { [0]=> string(1) "i" [1]=> string(1) "p" }
-
 // --------------------------------------------------
 // 答えを取得
 // --------------------------------------------------
@@ -25,16 +21,7 @@ $stmt = $db->prepare($sql);
 //実行
 $stmt->execute([':id' => $question_id]);
 
-// var_dump($question_id);
-//①②
-//string(1) "2"
-
 $result_answers = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// var_dump($result_answers);
-//①②
-//[0]=> array(2) { ["id"]=> string(1) "3" ["answer"]=> string(1) "i" }
-//[1]=> array(2) { ["id"]=> string(1) "4" ["answer"]=> string(1) "p" }
 
 // --------------------------------------------------
 // バリデーション
@@ -54,11 +41,6 @@ if (!empty($_POST) && empty($_SESSION['input_data'])) {
     if (is_array($answer )) {
         foreach ( $answer as $a) {
 
-            //var_dump($a);
-            //②
-            //string(1) "i"
-            //string(1) "p"
-
             if (empty($a)) {
                 $error_message['answer'] = '答えを入力して下さい';
 
@@ -68,8 +50,6 @@ if (!empty($_POST) && empty($_SESSION['input_data'])) {
         }
     //答え【配列でなかった場合】
     } else {
-
-        //var_dump($answer);
 
         if (empty($answer)) {
             $error_message['answer'] = '答えを入力して下さい';
@@ -103,7 +83,7 @@ session_destroy();
 
 	<?php include('./nav.php'); ?>
 
-	<!-- register -->
+	<!-- edit -->
 	<div class="edit">
 
 		<form action="edit.php" method="post" autocomplete="off">
@@ -127,21 +107,6 @@ session_destroy();
 			<?php
 			if (is_array($result_answers)) {
                 foreach ( $result_answers as $result_answer) {
-
-                //var_dump($result_answer);
-                //①②
-                //array(2) { ["id"]=> string(1) "3" ["answer"]=> string(1) "i" }
-                //array(2) { ["id"]=> string(1) "4" ["answer"]=> string(1) "p" }
-
-                //var_dump($result_answer['answer']);
-                //①②
-                //string(1) "i"
-                //string(1) "p"
-
-                //var_dump($result_answer['id']);
-                //①②
-                //string(1) "3"
-                //string(1) "4"
             ?>
 			<table>
 				<tr>
