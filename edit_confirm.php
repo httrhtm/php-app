@@ -31,9 +31,7 @@ $answers = $_POST['answer']; //配列
 				<tr>
 					<th>問題:</th>
 					<td>
-						<textarea readonly name="question" rows="2">
-							<?= $question ?>
-						</textarea>
+						<input readonly name="question" value="<?= $question ?>">
 						<input type="hidden" name="question_id" value="<?= $question_id ?>">
 					</td>
 
@@ -48,9 +46,7 @@ $answers = $_POST['answer']; //配列
 				<tr>
 					<th>答え:</th>
 					<td>
-						<textarea readonly name="answer[]" rows="2">
-							<?= $answer ?>
-						</textarea>
+						<input readonly name="answer[]" value="<?= $answer ?>">
 					</td>
 				</tr>
 			</table>
