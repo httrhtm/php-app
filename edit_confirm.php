@@ -3,11 +3,12 @@
 // 入力値を取得
 // --------------------------------------------------
 
-// 直接入れると参照できないためPHP変数に入れる
+// PHP変数に入れる
 $question_id = $_POST['question_id'];
 $question = $_POST['question'];
 $answers_id = $_POST['answer_id']; //配列
 $answers = $_POST['answer']; //配列
+
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +22,7 @@ $answers = $_POST['answer']; //配列
 
 	<?php include('./nav.php'); ?>
 
-	<!-- register -->
+	<!-- edit confirm -->
 	<div class="edit-confirm">
 
 		<form action="update.php" method="post">
@@ -31,9 +32,7 @@ $answers = $_POST['answer']; //配列
 				<tr>
 					<th>問題:</th>
 					<td>
-						<textarea readonly name="question" rows="2">
-							<?= $question ?>
-						</textarea>
+						<input readonly name="question" value="<?= $question ?>">
 						<input type="hidden" name="question_id" value="<?= $question_id ?>">
 					</td>
 
@@ -42,15 +41,13 @@ $answers = $_POST['answer']; //配列
 
 			<!-- 答え -->
 			<?php
-			foreach ( $answers as $answer) {
+			foreach ( $answers as $answer ) {
         	?>
 			<table>
 				<tr>
 					<th>答え:</th>
 					<td>
-						<textarea readonly name="answer[]" rows="2">
-							<?= $answer ?>
-						</textarea>
+						<input readonly name="answer[]" value="<?= $answer ?>">
 					</td>
 				</tr>
 			</table>
@@ -65,7 +62,8 @@ $answers = $_POST['answer']; //配列
     		<?php
             }
             ?>
-			<button type="button" onclick="location.href='edit.php'">戻る</button>
+
+			<button type="button" onclick="location.href='list.php'">戻る</button>
 			<button type="submit">更新</button>
 
 		</form>

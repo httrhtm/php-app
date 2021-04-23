@@ -35,7 +35,6 @@ for ($i = 0; $i < count($answers); $i++){
 
 }
 
-
 // listページにリダイレクト
 header("Location: list.php");
 

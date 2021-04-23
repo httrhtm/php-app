@@ -1,6 +1,5 @@
 <?php
 require 'db_connection.php';
-
 // --------------------------------------------------
 // 問題を取得
 // --------------------------------------------------
@@ -71,13 +70,14 @@ if (isset($db)) {
         			<td><?= $question['question']; ?></td>
 
         			<!-- 編集ボタン -->
-        			<td>
-        				<form action="edit.php" method="post">
-        					<button type="submit">編集</button>
-        					<input type="hidden" name="question_id" value="<?= $question['id'] ?>">
-        					<input type="hidden" name="question" value="<?= $question['question']; ?>">
-        				</form>
-        			</td>
+            			<td>
+            				<form action="edit.php" method="post">
+            					<button type="submit">編集</button>
+            					<input type="hidden" name="question_id" value="<?= $question['id'] ?>">
+            					<input type="hidden" name="question" value="<?= $question['question']; ?>">
+            					<input type="hidden" name="answer" value="sample">
+            				</form>
+            			</td>
 
         			<!-- 削除ボタン -->
         			<td>
@@ -105,7 +105,6 @@ if (isset($db)) {
             			<td><?= $answer['answer'] ?></td>
             		</tr>
             	</table>
-
     	<?php
     		  }
     	   }
