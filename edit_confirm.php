@@ -6,8 +6,8 @@
 // 直接入れると参照できないためPHP変数に入れる
 $question_id = $_POST['question_id'];
 $question = $_POST['question'];
-$answers_id = $_POST['answer_id']; //配列
-$answers = $_POST['answer']; //配列
+$answer_id = $_POST['answer_id']; //配列
+$answer = $_POST['answer']; //配列
 ?>
 
 <!DOCTYPE html>
@@ -39,28 +39,18 @@ $answers = $_POST['answer']; //配列
 			</table>
 
 			<!-- 答え -->
-			<?php
-			foreach ( $answers as $answer) {
-        	?>
 			<table>
 				<tr>
 					<th>答え:</th>
 					<td>
-						<input readonly name="answer[]" value="<?= $answer ?>">
+						<input readonly name="answer" value="<?= $answer ?>">
 					</td>
 				</tr>
 			</table>
-			<?php
-			}
-			?>
 
-			<?php
-            foreach ($answers_id as $answer_id) {
-            ?>
-    			<input type="hidden" name="answer_id[]" value="<?= $answer_id ?>">
-    		<?php
-            }
-            ?>
+
+    		<input type="hidden" name="answer_id" value="<?= $answer_id ?>">
+
 			<button type="button" onclick="location.href='edit.php'">戻る</button>
 			<button type="submit">更新</button>
 

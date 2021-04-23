@@ -10,14 +10,6 @@ $question = $_POST['question'];
 $answer_id = $_POST['answer_id'];
 $answer = $_POST['answer'];
 
-var_dump($question_id); //2
-var_dump($question); //a
-
-// それぞれの編集ボタン
-var_dump($answer_id); //3, 4
-var_dump($answer); //a
-
-
 // answerを取ってきているので、question_idでanswerを探すSQL文を削除
 
 // --------------------------------------------------

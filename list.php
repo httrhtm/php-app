@@ -71,13 +71,7 @@ if (isset($db)) {
         			<td><?= $question['question']; ?></td>
 
         			<!-- 編集ボタン -->
-        			<td>
-        				<form action="edit.php" method="post">
-        					<button type="submit">編集</button>
-        					<input type="hidden" name="question_id" value="<?= $question['id'] ?>">
-        					<input type="hidden" name="question" value="<?= $question['question']; ?>">
-        				</form>
-        			</td>
+        			<!-- answerの値を渡せないのでanswerのループの中に移動 -->
 
         			<!-- 削除ボタン -->
         			<td>
@@ -112,15 +106,6 @@ if (isset($db)) {
             					<input type="hidden" name="question" value="<?= $question['question']; ?>">
             					<input type="hidden" name="answer_id" value="<?= $answer['id'] ?>">
             					<input type="hidden" name="answer" value="<?= $answer['answer']; ?>">
-            				</form>
-            			</td>
-
-            			<!-- 削除ボタン -->
-            			<td>
-            				<form action="delete_confirm.php" method="post">
-            					<button type="submit">削除</button>
-            					<input type="hidden" name="question_id" value="<?= $question['id'] ?>">
-            					<input type="hidden" name="question" value="<?= $question['question']; ?>">
             				</form>
             			</td>
             		</tr>
