@@ -1,5 +1,17 @@
 <?php
 // --------------------------------------------------
+// バリデーション
+// --------------------------------------------------
+if ( $_POST['user_name'] == null || !preg_match("/^[a-zA-Z0-9]+$/", $_POST['user_name'])){
+    header("Location: user_register.php");
+} elseif ( $_POST['pass'] == null || !preg_match("/^[a-zA-Z0-9]+$/", $_POST['pass'])) {
+    header("Location: user_register.php");
+} elseif (!strcmp($_POST['pass'],  $_POST['pass_conf']) == 0){
+    header("Location: user_register.php");
+} elseif ($_POST['pass'] < 8){
+    header("Location: user_register.php");
+}
+// --------------------------------------------------
 // 入力値を取得
 // --------------------------------------------------
 $user_name = $_POST['user_name'];

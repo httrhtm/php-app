@@ -8,9 +8,6 @@
 <!-- バリデーション -->
 function valid(){
 
-	console.log(document.form.pass.value.length);
-	console.log(document.form.user_name.value);
-
 	if(document.form.user_name.value == null || !document.form.user_name.value.match(/^[A-Za-z0-9]+$/)) {
 		alert('ユーザ名を半角英数字で入力してください');
 	}
