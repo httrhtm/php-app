@@ -48,7 +48,9 @@ if (isset($db)) {
             			<td><?= $question['question']; ?></td>
             		<tr>
             	</table>
-
+            	<input type="hidden" name="question_id[]" value="<?= $question['id'] ?>">
+            	<input type="hidden" name="question[]" value="<?= $question['question'] ?>">
+            	<?php ?>
 				<!-- answer -->
             	<table>
             		<tr>
@@ -56,7 +58,7 @@ if (isset($db)) {
 
             			<!-- 答え -->
             			<td>
-            				<input name="answer">
+            				<input name="answer[]">
             			</td>
             		</tr>
             	</table>
