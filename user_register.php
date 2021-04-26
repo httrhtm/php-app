@@ -17,7 +17,7 @@ function valid(){
 	else if (document.form.pass.value == null || !document.form.pass.value.match(/^[A-Za-z0-9]+$/)){
 		alert('パスワードを半角英数字で入力してください');
 	}
-	else if(!document.form.pass.value == document.form.pass_conf.value) {
+	else if(document.form.pass.value !== document.form.pass_conf.value) {
 		alert('PWとPW確認が一致しませんでした');
 	}
 	else if(document.form.pass.value.length < 8){
