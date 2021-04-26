@@ -10,9 +10,9 @@ $user_id = $_SESSION['id'];
 // 履歴を取得
 // --------------------------------------------------
 if (isset($db)) {
-    $sql = 'select * from histories';
+    $sql = 'select * from histories where users_id = :id';
     $stmt = $db->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([':id' => $user_id]);
     $array_history = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
@@ -40,7 +40,6 @@ if (isset($db)) {
 
     		<?php
     		foreach ( $array_history as $history ) {
-    		    if (strcmp($history['users_id'], $user_id) == 0)
     		?>
 			<tr>
 				<td><?= $user_name ?></td>
