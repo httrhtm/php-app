@@ -88,8 +88,12 @@ $date = date("Y/m/d H:i:s");
 			<tr>
     			<!-- ログインユーザー名 -->
     			<td><?= $user_name ?>さん</td>
+    		</tr>
+    		<tr>
     			<!-- 問題数と正解数 -->
     			<td><?= $question_total ?>問中<?= $point ?>問正解です。</td>
+    		</tr>
+    		<tr>
     			<!-- 点数 -->
     			<td><?= $score ?>点でした</td>
 			</tr>
