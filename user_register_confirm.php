@@ -65,7 +65,7 @@ $admin_check = $_POST['admin_check'];
 				</tr>
 			</table>
 
-			<button type="button" onclick="location.href='user_lists.php'">戻る</button>
+			<button type="button" onclick="location.href='user_register.php'">戻る</button>
 			<button type="submit">登録</button>
 
 		</form>
