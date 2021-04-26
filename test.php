@@ -58,7 +58,7 @@ if (isset($db)) {
 
             			<!-- 答え -->
             			<td>
-            				<input name="answer[]">
+            				<input type ="text" name="answer[]">
             			</td>
             		</tr>
             	</table>
