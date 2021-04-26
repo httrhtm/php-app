@@ -5,6 +5,7 @@ session_start();
 // ログインユーザーを取得する
 // --------------------------------------------------
 $user_name = $_SESSION['name'];
+$user_id = $_SESSION['id'];
 // --------------------------------------------------
 // パラメーターを取得する
 // --------------------------------------------------
@@ -68,6 +69,10 @@ $date = date("Y/m/d H:i:s");
 // --------------------------------------------------
 // DBに登録する
 // --------------------------------------------------
+$sql = 'insert into histories (users_id, point, created_at) values (:users_id, :point, current_timestamp())';
+$stmt = $db->prepare($sql);
+$params = array(':users_id' => $user_id, ':point' => $score);
+$stmt->execute($params);
 
 ?>
 <!DOCTYPE html>
