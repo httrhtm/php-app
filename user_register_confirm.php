@@ -47,11 +47,17 @@ $admin_check = $_POST['admin_check'];
     				 <?php
     				 if (strcmp($admin_check, '1') == 0) {
     				 ?>
-						<td>あり</td>
+						<td>
+							あり
+							<input type="hidden" name="admin_check" value="1">
+						</td>
 					<?php
     				 } else {
 					?>
-						<td>なし</td>
+						<td>
+							なし
+							<input type="hidden" name="admin_check" value="0">
+						</td>
 					<?php
     				 }
 					?>

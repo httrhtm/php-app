@@ -37,7 +37,7 @@
 				<tr>
 					<th>管理者:</th>
 					<td>
-						<input type="hidden" name="admin_check" value="0" />
+						<input type="hidden" name="admin_check" value="0">
 						<input type="checkbox" name="admin_check" value="1">
 					</td>
 				</tr>
