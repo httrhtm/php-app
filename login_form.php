@@ -6,7 +6,7 @@
  </head>
  <body>
    <p>ログイン</p>
-   <form  action="login.php" method="post">
+   <form  action="login.php" method="post" autocomplete="off">
      <label for="id">ID</label>
      <input type="text" name="id">
      <label for="password">password</label>
