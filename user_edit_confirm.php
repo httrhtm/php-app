@@ -4,7 +4,7 @@
 // --------------------------------------------------
 $id = $_POST['id'];
 $name = $_POST['name'];
-$password = $_POST['password'];
+$password = $_POST['pass'];
 $admin_flag = $_POST['admin_flag'];
 ?>
 
@@ -12,16 +12,16 @@ $admin_flag = $_POST['admin_flag'];
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>user edit</title>
+<title>user edit confirm</title>
 </head>
 <body>
-<p>ユーザー編集</p>
+<p>ユーザー編集確認</p>
 
 <?php include('./nav.php'); ?>
 
-	<!-- edit -->
+	<!-- edit confirm -->
 	<div class="user-edit">
-	<form action="user_edit_confirm.php" method="post" autocomplete="off">
+	<form action="user_update.php" method="post" autocomplete="off">
 			<table>
 				<tr>
 					<th>ID:</th>
@@ -32,7 +32,7 @@ $admin_flag = $_POST['admin_flag'];
 				<tr>
 					<th>ユーザー名:</th>
 					<td>
-						<input readonly type="text" name="name" value="<?= $name ?>">
+						<input readonly type="text" value="<?= $name ?>">
 					</td>
 				</tr>
 				<tr>
@@ -44,24 +44,24 @@ $admin_flag = $_POST['admin_flag'];
 				<tr>
 					<th>PW確認:</th>
 					<td>
-						<input type="text" name="pass-conf" value="<?= $password ?>">
+						<input type="text" value="<?= $password ?>">
 					</td>
 				</tr>
 				<tr>
 					<th>管理者:</th>
 					<?php
-    				if (strcmp($admin_flag, '1') == 0) {
-    				?>
+    				 if (strcmp($admin_flag, '1') == 0) {
+    				 ?>
 						<td>
-							<input type="hidden" name="admin_flag" value="0">
-							<input type="checkbox" name="admin_flag" value="1" checked>
+							あり
+							<input type="hidden" name="admin_check" value="1">
 						</td>
 					<?php
-    				} else {
+    				 } else {
 					?>
 						<td>
-							<input type="hidden" name="admin_flag" value="0">
-							<input type="checkbox" name="admin_flag" value="1">
+							なし
+							<input type="hidden" name="admin_check" value="0">
 						</td>
 					<?php
     				 }
@@ -69,9 +69,8 @@ $admin_flag = $_POST['admin_flag'];
 				</tr>
 			</table>
 
-			<button type="button" onclick="location.href='user_lists.php'">戻る</button>
-			<!--<input type="button" value="確認" onClick="valid()"></input> -->
-			<button type="submit">確認</button>
+			<button type="button" onclick="location.href='user_edit.php'">戻る</button>
+			<button type="submit">更新</button>
 
 		</form>
 	</div>
