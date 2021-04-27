@@ -54,14 +54,14 @@ $admin_flag = $_POST['admin_flag'];
     				 ?>
 						<td>
 							あり
-							<input type="hidden" name="admin_check" value="1">
+							<input type="hidden" name="admin_flag" value="1">
 						</td>
 					<?php
     				 } else {
 					?>
 						<td>
 							なし
-							<input type="hidden" name="admin_check" value="0">
+							<input type="hidden" name="admin_flag" value="0">
 						</td>
 					<?php
     				 }
