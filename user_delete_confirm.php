@@ -33,19 +33,19 @@ $admin_flag = $_POST['admin_flag'];
 				<tr>
 					<th>ユーザー名:</th>
 					<td>
-						<input readonly type="text" name="user_name" value="<?= $name ?>">
+						<input readonly type="text" value="<?= $name ?>">
 					</td>
 				</tr>
 				<tr>
 					<th>PW:</th>
 					<td>
-						<input readonly type="text" name="pass" value="<?= $password ?>">
+						<input readonly type="text" value="<?= $password ?>">
 					</td>
 				</tr>
 				<tr>
 					<th>PW確認:</th>
 					<td>
-						<input readonly type="text" name="pass_conf" value="<?= $password ?>">
+						<input readonly type="text" value="<?= $password ?>">
 					</td>
 				</tr>
 				<tr>

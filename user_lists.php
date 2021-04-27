@@ -4,7 +4,7 @@ require 'db_connection.php';
 // ユーザーをDBから取得する
 // --------------------------------------------------
 if (isset($db)) {
-    $sql = 'select * from users';
+    $sql = 'select * from users where deleteflag = 0';
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
