@@ -44,6 +44,9 @@
 <meta charset="utf-8">
 <title>register</title>
 <script type="text/javascript">
+//--------------------------------------------------
+//追加ボタン
+//--------------------------------------------------
 var i = 1;
 function addForm() {
 	var table = document.getElementById("table");
@@ -57,9 +60,52 @@ function addForm() {
 	var cell3 = row.insertCell(-1);
 
 	// セルの内容入力
-    cell1.innerHTML = ' <p>答え:</p>';
-	cell2.innerHTML = '<input name="answer[]">'
-	cell3.innerHTML = '<input type="button" value="削除" onclick="deleteRow();">'
+    cell1.innerHTML = '<p>答え:</p>';
+	cell2.innerHTML = '<input name="answer[]" id ="answer' + i + '" class="input">'
+	cell3.innerHTML = '<input type="button" value="削除" id="delBtn'+ i + '" class="delbtn" onclick="removeForm(this);">'
+
+	i++;
+}
+//--------------------------------------------------
+//削除ボタン
+//--------------------------------------------------
+ function removeForm(obj){
+    if (!obj)
+        return;
+
+    var objTR = obj.parentNode.parentNode;
+    var objTBL = objTR.parentNode;
+
+    if (objTBL)
+        objTBL.deleteRow(objTR.sectionRowIndex);
+
+    // id/name ふり直し
+    var tagElements = document.getElementsByTagName("input");
+    if (!tagElements)
+        return false;
+
+    // <input type="text" id="txtN">
+    var seq = 1;
+    for (var i = 0; i < tagElements.length; i++)
+    {
+        if (tagElements[i].className.match("input"))
+        {
+            tagElements[i].setAttribute("id", "answer" + seq);
+            tagElements[i].setAttribute("name", "answer[]");
+            ++seq;
+        }
+    }
+
+    // <input type="button" id="delBtnN">
+    seq = 1;
+    for (var i = 0; i < tagElements.length; i++)
+    {
+        if (tagElements[i].className.match("delbtn"))
+        {
+            tagElements[i].setAttribute("id", "delBtn" + seq);
+            ++seq;
+        }
+    }
 }
 </script>
 </head>
@@ -92,11 +138,11 @@ function addForm() {
 					<th>答え:</th>
 
 					<td>
-						<input name="answer[]">
+						<input name="answer[]" id ="answer0">
 					</td>
 
 					<td>
-						<input type="button" value="削除" onclick="deleteForm(this)">
+						<input type="hidden" value="削除" onclick="removeForm(this)">
 					</td>
 
 				</tr>
