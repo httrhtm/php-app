@@ -12,17 +12,16 @@ $admin_flag = $_POST['admin_flag'];
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>user delete</title>
+<title>user edit</title>
 </head>
 <body>
-<p>ユーザー削除確認</p>
+<p>ユーザー編集</p>
 
 <?php include('./nav.php'); ?>
 
-	<!-- delete -->
-	<div class="user-delete-confirm">
-
-		<form action="user_delete.php" method="post" autocomplete="off">
+	<!-- edit -->
+	<div class="user-edit">
+	<form action="user_edit_confirm.php" method="post" autocomplete="off">
 			<table>
 				<tr>
 					<th>ID:</th>
@@ -33,45 +32,43 @@ $admin_flag = $_POST['admin_flag'];
 				<tr>
 					<th>ユーザー名:</th>
 					<td>
-						<input readonly type="text" value="<?= $name ?>">
+						<input readonly type="text" name="name" value="<?= $name ?>">
 					</td>
 				</tr>
 				<tr>
 					<th>PW:</th>
 					<td>
-						<input readonly type="text" value="<?= $password ?>">
+						<input type="text" name="pass" value="<?= $password ?>">
 					</td>
 				</tr>
 				<tr>
 					<th>PW確認:</th>
 					<td>
-						<input readonly type="text" value="<?= $password ?>">
+						<input type="text" name="pass-conf" value="<?= $password ?>">
 					</td>
 				</tr>
 				<tr>
 					<th>管理者:</th>
-
-    				 <?php
+					<?php
     				 if (strcmp($admin_flag, '1') == 0) {
     				 ?>
 						<td>
-							あり
+							<input type="checkbox" name="admin_check" value="1" checked>
 						</td>
 					<?php
     				 } else {
 					?>
 						<td>
-							なし
+							<input type="checkbox" name="admin_check" value="0">
 						</td>
 					<?php
     				 }
 					?>
-
 				</tr>
 			</table>
 
 			<button type="button" onclick="location.href='user_lists.php'">戻る</button>
-			<button type="submit">削除</button>
+			<input type="button" value="確認" onClick="valid()"></input>
 
 		</form>
 	</div>
