@@ -43,6 +43,71 @@
 <head>
 <meta charset="utf-8">
 <title>register</title>
+<script type="text/javascript">
+//--------------------------------------------------
+//追加ボタン
+//--------------------------------------------------
+var i = 1;
+function addForm() {
+	var table = document.getElementById("table");
+
+	// 行を行末に追加
+    var row = table.insertRow(-1);
+
+	//td分追加
+    var cell1 = row.insertCell(-1);
+    var cell2 = row.insertCell(-1);
+	var cell3 = row.insertCell(-1);
+
+	// セルの内容入力
+    cell1.innerHTML = '<p>答え:</p>';
+	cell2.innerHTML = '<input name="answer[]" id ="answer' + i + '" class="input">'
+	cell3.innerHTML = '<input type="button" value="削除" id="delBtn'+ i + '" class="delbtn" onclick="removeForm(this);">'
+
+	i++;
+}
+//--------------------------------------------------
+//削除ボタン
+//--------------------------------------------------
+ function removeForm(obj){
+    if (!obj)
+        return;
+
+    var objTR = obj.parentNode.parentNode;
+    var objTBL = objTR.parentNode;
+
+    if (objTBL)
+        objTBL.deleteRow(objTR.sectionRowIndex);
+
+    // id/name ふり直し
+    var tagElements = document.getElementsByTagName("input");
+    if (!tagElements)
+        return false;
+
+    // <input type="text" id="txtN">
+    var seq = 1;
+    for (var i = 0; i < tagElements.length; i++)
+    {
+        if (tagElements[i].className.match("input"))
+        {
+            tagElements[i].setAttribute("id", "answer" + seq);
+            tagElements[i].setAttribute("name", "answer[]");
+            ++seq;
+        }
+    }
+
+    // <input type="button" id="delBtnN">
+    seq = 1;
+    for (var i = 0; i < tagElements.length; i++)
+    {
+        if (tagElements[i].className.match("delbtn"))
+        {
+            tagElements[i].setAttribute("id", "delBtn" + seq);
+            ++seq;
+        }
+    }
+}
+</script>
 </head>
 <body>
 	<p>問題・答え登録</p>
@@ -68,33 +133,16 @@
 			 </span>
 
 			<!-- 答え -->
-			<table>
+			<table id="table">
 				<tr>
 					<th>答え:</th>
+
 					<td>
 						<input name="answer[]">
 					</td>
 
 					<td>
-						<button>削除*</button>
-					</td>
-
-				</tr>
-			</table>
-			<span>
-				<?php echo isset($error_message['answer']) ? $error_message['answer'] : ''; ?>
-			 </span>
-
-			<!-- 答え -->
-			<table>
-				<tr>
-					<th>答え:</th>
-					<td>
-						<input name="answer[]">
-					</td>
-
-					<td>
-						<button>削除*</button>
+						<input type="hidden" value="削除" onclick="removeForm(this)">
 					</td>
 
 				</tr>
@@ -105,7 +153,7 @@
 
 			<br>
 			<button type="button" onclick="location.href='list.php'">戻る</button>
-			<button>追加*</button>
+			<input type="button" value="追加" onclick="addForm()">
 			<button type="submit">確認</button>
 
 		</form>
