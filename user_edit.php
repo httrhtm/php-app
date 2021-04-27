@@ -13,6 +13,25 @@ $admin_flag = $_POST['admin_flag'];
 <head>
 <meta charset="utf-8">
 <title>user edit</title>
+
+<script type="text/javascript">
+<!-- バリデーション -->
+function valid(){
+
+	if (document.form.pass.value == null || !document.form.pass.value.match(/^[A-Za-z0-9]+$/)){
+		alert('パスワードを半角英数字で入力してください');
+	}
+	else if(document.form.pass.value !== document.form.pass_conf.value) {
+		alert('PWとPW確認が一致しませんでした');
+	}
+	else if(document.form.pass.value.length < 8){
+        alert('パスワードを8文字以上で入力してください。');
+    }
+	else{
+        document.form.submit();
+     }
+}
+</script>
 </head>
 <body>
 <p>ユーザー編集</p>
@@ -21,7 +40,7 @@ $admin_flag = $_POST['admin_flag'];
 
 	<!-- edit -->
 	<div class="user-edit">
-	<form action="user_edit_confirm.php" method="post" autocomplete="off">
+	<form action="user_edit_confirm.php" method="post" autocomplete="off" name="form">
 			<table>
 				<tr>
 					<th>ID:</th>
@@ -44,7 +63,7 @@ $admin_flag = $_POST['admin_flag'];
 				<tr>
 					<th>PW確認:</th>
 					<td>
-						<input type="text" name="pass-conf" value="<?= $password ?>">
+						<input type="text" name="pass_conf" value="<?= $password ?>">
 					</td>
 				</tr>
 				<tr>
@@ -70,8 +89,7 @@ $admin_flag = $_POST['admin_flag'];
 			</table>
 
 			<button type="button" onclick="location.href='user_lists.php'">戻る</button>
-			<!--<input type="button" value="確認" onClick="valid()"></input> -->
-			<button type="submit">確認</button>
+			<input type="button" value="確認" onClick="valid()"></input>
 
 		</form>
 	</div>
