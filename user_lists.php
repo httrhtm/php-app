@@ -4,7 +4,7 @@ require 'db_connection.php';
 // ユーザーをDBから取得する
 // --------------------------------------------------
 if (isset($db)) {
-    $sql = 'select * from users';
+    $sql = 'select * from users where deleteflag = 0';
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -39,7 +39,7 @@ if (isset($db)) {
 
 			<?php
     		foreach ( $users as $user ) {
-    		?>
+      		?>
 			<tr>
 				<!-- ID -->
 				<td><?= $user['id'] ?></td>
@@ -72,6 +72,10 @@ if (isset($db)) {
     			<td>
     				<form action="user_delete_confirm.php" method="post">
     					<button type="submit">削除</button>
+    					<input type="hidden" name="id" value="<?= $user['id'] ?>">
+    					<input type="hidden" name="name" value="<?= $user['name'] ?>" >
+    					<input type="hidden" name="password" value="<?= $user['password'] ?>" >
+    					<input type="hidden" name="admin_flag" value="<?= $user['admin_flag'] ?>" >
     				</form>
     			</td>
 			<?php
