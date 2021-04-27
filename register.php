@@ -138,7 +138,7 @@ function addForm() {
 					<th>答え:</th>
 
 					<td>
-						<input name="answer[]" id ="answer0">
+						<input name="answer[]">
 					</td>
 
 					<td>
