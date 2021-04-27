@@ -65,6 +65,10 @@ if (isset($db)) {
     			<td>
     				<form action="user_edit.php" method="post">
     					<button type="submit">編集</button>
+    					<input type="hidden" name="id" value="<?= $user['id'] ?>">
+    					<input type="hidden" name="name" value="<?= $user['name'] ?>" >
+    					<input type="hidden" name="password" value="<?= $user['password'] ?>" >
+    					<input type="hidden" name="admin_flag" value="<?= $user['admin_flag'] ?>" >
     				</form>
     			</td>
 

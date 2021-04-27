@@ -12,7 +12,7 @@ $admin_flag = $_POST['admin_flag'];
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>user register</title>
+<title>user delete</title>
 </head>
 <body>
 <p>ユーザー削除確認</p>
